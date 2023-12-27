@@ -1,23 +1,23 @@
-name: deploy # (0) GitHub Action에서 보여질 이름을 지정합니다. 
+name: deploy # (0) GitHub Action에서 보여질 이름을 지정
 
 on:
   release:
-    types: [push] # (1) push시 자동으로 실행됩니다.
+    types: [push] # (1) push시 자동으로 실행
   push:
-    branches: [main] # (2) main 브랜치에서 동작합니다.
-  workflow_dispatch: # (3) 수동으로도 실행이 가능힙니다.
+    branches: [main] # (2) main 브랜치에서 동작
+  workflow_dispatch: # (3) 수동으로도 실행이 가능
 
 
 jobs:
   build: 
-    runs-on: ubuntu-latest # (4) 해당 스크립트를 작동할 OS 입니다.
+    runs-on: ubuntu-latest # (4) 해당 스크립트를 작동할 OS 환경 지정
     permissions: 
       contents: read 
       packages: write
 
     steps:
     - name: Checkout 
-      uses: actions/checkout@v3  # (5) 프로젝트 코드를 CheckOut합니다.    
+      uses: actions/checkout@v3  # (5) 프로젝트 코드를 CheckOut   
       
     - name: Set up JDK 8 
       uses: actions/setup-java@v3 # (6) Java 설치
@@ -31,4 +31,15 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew clean build -x test # (8) gradlew로 빌드
+      shell: bash
+
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2  # (9) KST로 시간대 설정
+      id: current-time
+      with:
+        format: YYYY-MM-DDTHH-mm-ss 
+        utcOffset: "+09:00"
+
+    - name: Show Current Time
+      run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}" # 시간 포맷 설정
       shell: bash
