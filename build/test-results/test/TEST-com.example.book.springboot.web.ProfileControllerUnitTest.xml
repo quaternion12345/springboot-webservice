@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.book.springboot.web.ProfileControllerUnitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-02-23T09:52:02" hostname="DESKTOP-F33CR16" time="0.001">
-  <properties/>
-  <testcase name="active_profile이_없으면_default가_조회된다" classname="com.example.book.springboot.web.ProfileControllerUnitTest" time="0.0"/>
-  <testcase name="real_profile이_조회된다" classname="com.example.book.springboot.web.ProfileControllerUnitTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
